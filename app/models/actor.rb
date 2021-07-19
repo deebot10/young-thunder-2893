@@ -11,6 +11,6 @@ class Actor < ApplicationRecord
   end
 
   def self.find_actor(name)
-    where("name = '#{name}'").first
+    where("name = '#{name}'")
   end
 end
