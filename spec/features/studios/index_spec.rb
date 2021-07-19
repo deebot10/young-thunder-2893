@@ -11,13 +11,7 @@ RSpec.describe 'Studio Index' do
     visit '/studios'
   end 
   
-    # Story 1
-    # Studio Index
-    
-    # As a user,
-    # When I visit the studio index page
-    # I see a each studio's name and location
-    # And underneath each studio, I see the titles of all of its movies.
+  # Story 1
   it 'Can display all studios and movies' do
 
     expect(page).to have_content(@studio_1.name)
@@ -26,7 +20,7 @@ RSpec.describe 'Studio Index' do
     expect(page).to have_content(@studio_2.name)
     expect(page).to have_content(@studio_2.location)
 
-    expect(page).to have_content(@movie_1.name)
-    expect(page).to have_content(@movie_2.name)
+    expect(page).to have_content(@movie_1.title)
+    expect(page).to have_content(@movie_2.title)
   end
 end
