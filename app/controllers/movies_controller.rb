@@ -4,7 +4,6 @@ class MoviesController < ApplicationController
     actor = Actor.find_actor(params[:name])
     if actor.present?
       @movie.actors << actor
-      render :show
     end  
   end    
 end
