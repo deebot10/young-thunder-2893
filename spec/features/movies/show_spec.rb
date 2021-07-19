@@ -10,9 +10,7 @@ RSpec.describe 'Movie Show' do
     @actor_1 = @movie.actors.create!(name: 'John Boyega', age: 27)
     @actor_2 = @movie.actors.create!(name: 'Samuel L Jackson', age: 81)
     @actor_3 = @movie.actors.create!(name: 'Lakeith Stanfield', age: 33)
-    @actor_4 = @movie.actors.create!(name: 'Brian Henry', age: 36) 
-    @actor_5 = @movie.actors.create!(name: "Lupita Nyong'o", age: 34) 
-    @actor_6 = @movie.actors.create!(name: 'Morgan Freeman', age: 99)     
+    @actor_4 = @movie.actors.create!(name: "Lupita Nyong'o", age: 34) 
 
     visit "/movies/#{@movie.id}"
   end 
@@ -30,5 +28,15 @@ RSpec.describe 'Movie Show' do
     expect(page).to have_content(@movie.title)
     expect(page).to have_content(@movie.creation_year)
     expect(page).to have_content(@movie.genre)
+  end
+
+  it 'shows the movies actors to youngest to oldest plus average age' do
+
+    expect(@actor_1).to appear_before(@actor_3)
+    expect(@actor_3).to appear_before(@actor_4)
+    expect(@actor_4).to appear_before(@actor_2)
+    expect(@actor_2).to_not appear_before(@actor_1)
+
+    expect(page).to have_content('Average Age: 0')
   end
 end
